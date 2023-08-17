@@ -1,22 +1,23 @@
-const int leftEdgeSensorPin = 2;   // Pin for the left edge sensor
-const int rightEdgeSensorPin = 3;  // Pin for the right edge sensor
+int pin_L = 3; // Edge left sensor pin
+int pin_R = 2; // Edge right sensor pin
 
 void setup() {
   Serial.begin(9600); // Initialize Serial Monitor
   
-  pinMode(leftEdgeSensorPin, INPUT);   // Set the left edge sensor pin as input
-  pinMode(rightEdgeSensorPin, INPUT);  // Set the right edge sensor pin as input
+  pinMode(pin_L, INPUT_PULLUP);
+  pinMode(pin_R, INPUT_PULLUP);
 }
 
 void loop() {
-  int leftSensorState = digitalRead(leftEdgeSensorPin);
-  int rightSensorState = digitalRead(rightEdgeSensorPin);
+  int status_L = digitalRead(pin_L);
+  int status_R = digitalRead(pin_R);
   
-  Serial.print("Left Edge Sensor: ");
-  Serial.println(leftSensorState == HIGH ? "Edge Detected!" : "No Edge Detected");
+  Serial.println("Edge Sensor Statuses:");
+  Serial.print("Edge Left: ");
+  Serial.println(status_L == LOW ? "Edge Detected!" : "No Edge Detected");
   
-  Serial.print("Right Edge Sensor: ");
-  Serial.println(rightSensorState == HIGH ? "Edge Detected!" : "No Edge Detected");
+  Serial.print("Edge Right: ");
+  Serial.println(status_R == LOW ? "Edge Detected!" : "No Edge Detected");
   
   delay(1000); // Delay to avoid rapid Serial Monitor output
 }
